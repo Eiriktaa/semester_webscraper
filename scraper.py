@@ -10,6 +10,7 @@ headers = {
     'Accept-Language': 'en-US',
 }
 
+workdir = os.path.dirname(__file__)
 
 def get_web_data_from_url(url):
     res = requests.get(url,headers=headers) 
@@ -31,7 +32,7 @@ def write_file(parsed_text,filename):
 
 def compare_new_data_to_file(new_data,filename):
   try:  
-      with open(filename,"r") as file:
+      with open(os.path.join(workdir,filename),"r") as file:
         filedata =  file.read()
         return filedata == new_data
   except:
@@ -43,7 +44,7 @@ def notify_users(message):
     hook.send(message)       
        
 
-with open("fag.csv",newline="") as fagliste :
+with open(os.path.join(workdir,"fag.csv"),newline="") as fagliste :
     fagkoder = csv.reader(fagliste)
     for fag in fagkoder:
         print(fag[0])
