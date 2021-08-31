@@ -1,4 +1,4 @@
-#! /usr/bin/python3
+#!/usr/bin/python3
 import bs4,csv
 import requests
 import os
@@ -55,6 +55,6 @@ with open(os.path.join(workdir,"fag.csv"),newline="") as fagliste :
             continue
         else:
             notify_users(f"New message posted  in {fag[0]}\n{fag[1]} ")
-            write_file(new_data,fag[0])
+            write_file(new_data,os.path.join(workdir,fag[0]))
     
 
